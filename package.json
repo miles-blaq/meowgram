@@ -32,5 +32,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "fibers": "^5.0.0",
+    "node-sass": "^4.14.1",
+    "sass": "^1.26.5",
+    "typescript": "^3.9.2"
   }
 }
