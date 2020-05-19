@@ -4,11 +4,11 @@ import Card from './Card'
 
 class CardList extends Component {
     render() {
-        const {Robots} = this.props
-        const roboList = Robots.map(robot=> <Card key={robot.id} robot={robot}/>)
+        const {Cats} = this.props
+        const catList = Cats.map(cat=> <Card key={cat.id} cat={cat}/>)
         return (
             <div>
-               {roboList}
+               {catList}
             </div>
         )
     }

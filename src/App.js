@@ -12,7 +12,7 @@ class App extends React.Component {
     super(props)
   
     this.state = {
-       robots: [],
+       Cats: [],
        searchFeild:"",
        errMsg:""
     }
@@ -21,7 +21,7 @@ class App extends React.Component {
 componentDidMount(){
     axios.get("https://jsonplaceholder.typicode.com/users")
     .then(response => {
-      this.setState({robots: response.data})
+      this.setState({Cats: response.data})
     })
     .catch(error => {
       this.setState({errMsg:"Something went wrong"})
@@ -36,21 +36,21 @@ componentDidMount(){
   }
   
   render(){
-    const {robots,searchFeild,errMsg} = this.state
-    const FilteredRobots = robots.filter(robot=> robot.name.toLocaleLowerCase()
+    const {Cats,searchFeild,errMsg} = this.state
+    const FilteredCats = Cats.filter(cat=> cat.name.toLocaleLowerCase()
     .includes(searchFeild.toLocaleLowerCase()))
 
     return (
       <div className="App tc">
         {/* sega logo fonts ( Cufon fonts) */}
-        {robots.length?
+        {Cats.length?
           <div>
             <h1 className="custom-color f1">MeowGram</h1> 
             <p style={{color:"#0ccac4"}} className="f2">Welcome to meowGram instagram for cats</p>
             <span className="f4">Don't hit the DM if don't have a delicious mouse</span>
             <SearchBox onSearchChange={this.onSearchChange}/>
             <Scrollable>
-              <CardList Robots={FilteredRobots}/>
+              <CardList Cats={FilteredCats}/>
             </Scrollable>
           </div> : null
         }
