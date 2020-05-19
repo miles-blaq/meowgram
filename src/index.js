@@ -1,12 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {createStore, applyMiddleware, combineReducers} from "redux";
+import {Provider} from "react-redux";
+import {createLogger} from "redux-logger";
+import thunkMiddleware from "redux-thunk";
+import {searchCats,getCats} from "./reducers"
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+const logger = createLogger();
+const rootReducer = combineReducers({searchCats,getCats})
+const store = createStore(rootReducer,applyMiddleware(thunkMiddleware, logger))
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

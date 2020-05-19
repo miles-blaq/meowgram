@@ -1,56 +1,52 @@
 import React from 'react';
 import "tachyons"
+import {connect} from "react-redux";
 import CardList from './Components/CardList';
 import SearchBox from './Components/SearchBox';
 import "./App.css"
-import axios from "axios";
 import Scrollable from './Components/Scrollable';
 
 
-class App extends React.Component {
-  constructor(props) {
-    super(props)
-  
-    this.state = {
-       robots: [],
-       searchFeild:"",
-       errMsg:""
+import { setSearchField, requestCats } from './actions';
+
+const mapStateToProps = (state)=>{
+    return {
+      searchField: state.searchCats.searchField,
+      isPending: state.getCats.isPending,
+      cats: state.getCats.cats,
+      errMsg: state.getCats.errMsg
     }
-  }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+    onSearchChange: (event)=> dispatch(setSearchField(event.target.value)),
+    onRequestCats : () => dispatch(requestCats())
+})
+
+class App extends React.Component {
 
 componentDidMount(){
-    axios.get("https://jsonplaceholder.typicode.com/users")
-    .then(response => {
-      this.setState({robots: response.data})
-    })
-    .catch(error => {
-      this.setState({errMsg:"Something went wrong"})
-      console.log(error)
-    })
+    this.props.onRequestCats()
   }
 
-  onSearchChange = (e)=>{
-    this.setState({
-      searchFeild: e.target.value
-    })
-  }
+
   
   render(){
-    const {robots,searchFeild,errMsg} = this.state
-    const FilteredRobots = robots.filter(robot=> robot.name.toLocaleLowerCase()
-    .includes(searchFeild.toLocaleLowerCase()))
+    const {searchField,onSearchChange,cats,errMsg} = this.props;
+    const FilteredCats = cats.filter(cat=> cat.name.toLocaleLowerCase()
+    .includes(searchField.toLocaleLowerCase()))
 
     return (
       <div className="App tc">
         {/* sega logo fonts ( Cufon fonts) */}
-        {robots.length?
+        {cats.length?
           <div>
             <h1 className="custom-color f1">MeowGram</h1> 
             <p style={{color:"#0ccac4"}} className="f2">Welcome to meowGram instagram for cats</p>
             <span className="f4">Don't hit the DM if don't have a delicious mouse</span>
-            <SearchBox onSearchChange={this.onSearchChange}/>
+            <SearchBox onSearchChange={onSearchChange}/>
             <Scrollable>
-              <CardList Robots={FilteredRobots}/>
+              <CardList Cats={FilteredCats }/>
             </Scrollable>
           </div> : null
         }
@@ -62,4 +58,4 @@ componentDidMount(){
   }
 }
 
-export default App;
+export default connect(mapStateToProps,mapDispatchToProps)(App);
