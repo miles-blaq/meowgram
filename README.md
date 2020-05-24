@@ -1,5 +1,5 @@
-A simple react web-ap
+A simple react web-app 
 
 #instagram for cats
 
-#using JsonPlaceholder API
+#using JsonPlaceholder API and tachyons
