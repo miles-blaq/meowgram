@@ -1,6 +1,6 @@
 {
-    "name": "meowgram",
-    "short_name": "meowgram",
+    "name": "Meowgram",
+    "short_name": "Meowgram",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
