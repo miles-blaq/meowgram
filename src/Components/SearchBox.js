@@ -5,7 +5,7 @@ export class SearchBox extends Component {
         const{onSearchChange} = this.props
         return (
             <div className="pa1">
-                <input className="pa2 ba b--green bg-lightest-blue" type="text" placeholder="Search"
+                <input aria-label="search feed" className="pa2 ba b--green bg-lightest-blue" type="text" placeholder="Search"
                 onChange={onSearchChange}/>
             </div>
         )

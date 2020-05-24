@@ -42,7 +42,7 @@ componentDidMount(){
         {cats.length?
           <div>
             <h1 className="custom-color f1">MeowGram</h1> 
-            <p style={{color:"#0ccac4"}} className="f2">Welcome to meowGram instagram for cats</p>
+            <p style={{color:"#0ccac4"}} className="f2">Welcome to meowGram: instagram for cats</p>
             <span className="f4">Don't hit the DM if don't have a delicious mouse</span>
             <SearchBox onSearchChange={onSearchChange}/>
             <Scrollable>
